@@ -8,7 +8,7 @@ const { resourceLimits } = require('worker_threads');
 const { lookup } = require('dns');
  
 const searcher = new YTSearcher({
-    key: key,
+    key: process.env.youtube_api,
     revealed: true
 });
  
@@ -205,4 +205,4 @@ client.on("message", async(message) => {
     }
 })
  
-client.login(token)
+client.login(process.env.token)
