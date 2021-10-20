@@ -55,7 +55,7 @@ client.on("message", async(message) => {
     async function execute(message, serverQueue){
         let vc = message.member.voice.channel;
         if(!vc){
-            return message.channel.send("Please join a voice chat first");
+            return message.channel.send("More nejdryf se prypoj a pak ti neco pustim");
         }else{
             let result = await searcher.search(args.join(" "), { type: "video" })
             const songInfo = await ytdl.getInfo(result.first.url)
@@ -87,11 +87,11 @@ client.on("message", async(message) => {
                 }catch (err){
                     console.error(err);
                     queue.delete(message.guild.id);
-                    return message.channel.send(`Unable to join the voice chat ${err}`)
+                    return message.channel.send(`More nemuzu se prypojyt co to je za rasyzmuz toto ${err}`)
                 }
             }else{
                 serverQueue.songs.push(song);
-                return message.channel.send(`The song has been added ${song.url}`);
+                return message.channel.send(`Tetka sem tohle prydal to fronti ${song.url}`);
             }
         }
     }
@@ -116,47 +116,47 @@ client.on("message", async(message) => {
               }
                 play(guild, serverQueue.songs[0]);
             })
-            serverQueue.txtChannel.send(`Now playing ${serverQueue.songs[0].url}`)
+            serverQueue.txtChannel.send(`Tetka hraje ${serverQueue.songs[0].url}`)
     }
     function stop (message, serverQueue){
         if(!message.member.voice.channel)
-            return message.channel.send("You need to join the voice chat first!")
+            return message.channel.send("More prypoj se do toho hlasoviho kanalu ti guto jedna!")
         serverQueue.songs = [];
         serverQueue.connection.dispatcher.end();
     }
     function skip (message, serverQueue){
         if(!message.member.voice.channel)
-            return message.channel.send("You need to join the voice chat first");
+            return message.channel.send("More prypoj se do toho hlasoviho kanalu ti guto jedna!");
         if(!serverQueue)
-            return message.channel.send("There is nothing to skip!");
+            return message.channel.send("A co ti mam jako skypnou kdiš tu nic neni?!");
         serverQueue.connection.dispatcher.end();
     }
     function pause(serverQueue){
       if(!serverQueue.connection)
-        return message.channel.send("neni hudba");
+        return message.channel.send("A co ti mam jako pauznout kdiš tu nic neni?!");
       if(!message.member.voice.channel)
-        return message.channel.send("nejsi připojenej")
+        return message.channel.send("More prypoj se do toho hlasoviho kanalu ti guto jedna!")
       if(serverQueue.connection.dispatcher.paused)
-        return message.channel.send("už je paused");
+        return message.channel.send("Šak uš to máš pauzlí no bi tě rakovyna vzala!");
       serverQueue.connection.dispatcher.pause();
-      message.channel.send("máš to paused");
+      message.channel.send("Pravje tet sem to pauznul!");
     }
     function resume(serverQueue){
       if(!serverQueue.connection)
-        return message.channel.send("neni hudba");
+        return message.channel.send("A co ti mam jako obnovyt kdiš tu nic neni?!");
       if(!message.member.voice.channel)
-        return message.channel.send("nejsi připojenej")
+        return message.channel.send("More prypoj se do toho hlasoviho kanalu ti guto jedna!")
       if(serverQueue.connection.dispatcher.resumed)
-        return message.channel.send("už je resumed");
+        return message.channel.send("Šak uš to máš obnovení no bi tě rakovyna vzala!");
       serverQueue.connection.dispatcher.resume();
-      message.channel.send("máš to resumed");
+      message.channel.send("Pravjte tet sem to obnovyl!");
     }
     function Loop(args, serverQueue){
 
       if(!serverQueue.connection)
-        return message.channel.send("neni hudba");
+        return message.channel.send("A co ti mam jako lúpnout kdiš tu nic neni?!");
       if(!message.member.voice.channel)
-        return message.channel.send("nejsi připojenej")
+        return message.channel.send("More prypoj se do toho hlasoviho kanalu ti guto jedna!")
 
       switch(args[0].toLowerCase()){
         case 'all':
@@ -164,35 +164,35 @@ client.on("message", async(message) => {
           serverQueue.loopone = false;
 
           if(serverQueue.loopall === true)
-            message.channel.send("loop all zaplej")
+            message.channel.send("Pravje tet sem zapl loop all")
           else
-            message.channel.send("loop all vyplej")
+            message.channel.send("Pravje tet sem vypl loop all")
           break;
         case 'one':
           serverQueue.loopone = !serverQueue.loopone;
           serverQueue.loopall = false;
           
           if(serverQueue.loopone === true)
-            message.channel.send("loop one zaplej")
+            message.channel.send("Pravje tet sem zapl loop one")
           else
-            message.channel.send("loop one vyplej")
+            message.channel.send("Pravje tet sem vypl loop one")
           break;
         case 'off':
           serverQueue.loopall = false;
           serverQueue.loopone = false;
 
-          message.channel.send("loop vyplej");
+          message.channel.send("Tetka sem ti vipl ten lúp");
           break;
         default:
-          message.channel.send("řekni co chceš !loop one/all/off");
+          message.channel.send("More ale řekni co hceš nebo ti viřýznu játra !loop one/all/off");
       }
     }
 
     function Queue(serverQueue){
       if(!serverQueue.connection)
-        return message.channel.send("neni hudba");
+        return message.channel.send("Šak tu nic neni no bi tě guta vzala za nohi!");
       if(!message.member.voice.channel)
-        return message.channel.send("nejsi připojenej")
+        return message.channel.send("More prypoj se tam nebo ti vyřiznu jatra!")
 
         let nowPlaying = serverQueue.songs[0];
         let qMsg = `Now playing: ${nowPlaying.title}\n--------------------------\n`
