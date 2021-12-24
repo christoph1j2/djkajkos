@@ -8,7 +8,7 @@ const { resourceLimits } = require('worker_threads');
 const { lookup } = require('dns');
  
 const searcher = new YTSearcher({
-    key: process.env.youtube_api,
+    key: key,
     revealed: true
 });
  
@@ -158,7 +158,7 @@ client.on("message", async(message) => {
       if(!message.member.voice.channel)
         return message.channel.send("More prypoj se do toho hlasoviho kanalu ti guto jedna!")
 
-      switch(args[0].toLowerCase()){
+      switch(args[0]){
         case 'all':
           serverQueue.loopall = !serverQueue.loopall;
           serverQueue.loopone = false;
@@ -205,4 +205,4 @@ client.on("message", async(message) => {
     }
 })
  
-client.login(process.env.token)
+client.login(token)
