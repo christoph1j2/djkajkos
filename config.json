@@ -1,5 +1,5 @@
 {
 	"prefix": "!",
 	"token": "ODg4ODEwNDIwNzYzMjM4NDIz.YUYHNQ.pry2p9Bpq9y9W7SXUKmq06uBMUE",
-	"key": "AIzaSyAMVYH6sRXi76fqTvnvOsHNLVGyNQyC-NA"
+	"process.env.youtube_api": "AIzaSyAMVYH6sRXi76fqTvnvOsHNLVGyNQyC-NA"
 }
