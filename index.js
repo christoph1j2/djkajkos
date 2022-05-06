@@ -8,7 +8,7 @@ const { resourceLimits } = require('worker_threads');
 const { lookup } = require('dns');
  
 const searcher = new YTSearcher({
-    key: process.env.youtube_api,
+    key: key,
     revealed: true
 });
  
@@ -19,6 +19,8 @@ const queue = new Map();
 client.on("ready", () => {
     console.log("I am online!")
 })
+
+client.login(token);
  
 client.on("message", async(message) => {
     const prefix = '!';
@@ -121,7 +123,7 @@ client.on("message", async(message) => {
     function stop (message, serverQueue){
         if(!message.member.voice.channel)
             return message.channel.send("More prypoj se do toho hlasoviho kanalu ti guto jedna!")
-        serverQueue.songs = [];
+        serverQueue.song = [];
         serverQueue.connection.dispatcher.end();
     }
     function skip (message, serverQueue){
